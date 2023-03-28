@@ -129,4 +129,41 @@ class Subscribe_Me_Plugin_Public
 	{
 		echo do_shortcode('[my-shortcode]');
 	}
+
+
+	// Save subscriber email to database
+function save_subscriber_email()
+{
+
+    //To check input pattern 
+    if (isset($_POST['email'])) {
+        $email = sanitize_email($_POST['email']);
+        $pattern = '/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/';
+
+        if (preg_match($pattern, $email)) {
+            if (isset($_POST['submit'])) {
+
+                $subscribed_mails = get_option('subscribed_mails');
+
+                if (!$subscribed_mails) {
+                    $subscribed_mails = array();
+                }
+
+                if (in_array($email, $subscribed_mails)) {
+                    echo '<script>alert("You are already subscribed!");</script>';
+                } else {
+                    $subscribed_mails[] = $email;
+                    update_option('subscribed_mails', $subscribed_mails);
+
+                    // Display a success message
+                    echo '<script>alert("You have been subscribed Successfully!");</script>';
+
+                }
+            }
+        } else {
+            //For invalid email
+            echo '<script>alert("Please Enter a valid email!");</script>';
+        }
+    }
+}
 }
