@@ -130,4 +130,11 @@ class Subscribe_Me_Plugin_Admin
 		</div>
 <?php
 	}
+
+	function reg_settings()
+	{
+		register_setting('my_plugin_settings_group', 'no_of_posts');
+		add_settings_section('subs_settings', 'Subscription Mail Settings', '', 'subscribe-me-settings');
+		add_settings_field('no_of_posts', 'No of Posts', array($this, 'no_of_posts_cb'), 'subscribe-me-settings', 'subs_settings');
+	}
 }
