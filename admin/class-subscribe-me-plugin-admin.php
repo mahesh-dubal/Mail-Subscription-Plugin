@@ -106,12 +106,12 @@ class Subscribe_Me_Plugin_Admin
 	{
 		add_menu_page(
 			'Subscribe Me',
-			'Subscribe Me',
+			'Subscribe Mail Settings',
 			'manage_options',
 			'subscribe-me',
 			array($this, 'subscribe_me_callback'),
 			'dashicons-email',
-			10
+			100
 		);
 	}
 
@@ -135,6 +135,13 @@ class Subscribe_Me_Plugin_Admin
 	{
 		register_setting('my_plugin_settings_group', 'no_of_posts');
 		add_settings_section('subs_settings', 'Subscription Mail Settings', '', 'subscribe-me-settings');
-		add_settings_field('no_of_posts', 'No of Posts', array($this, 'no_of_posts_cb'), 'subscribe-me-settings', 'subs_settings');
+		add_settings_field('no_of_posts', 'No of Posts', array($this, 'no_of_posts_callback'), 'subscribe-me-settings', 'subs_settings');
+	}
+
+	public function no_of_posts_callback()
+	{
+	?>
+		<input type="text" name="no_of_posts" value="<?php echo esc_attr(get_option('no_of_posts')) ?>">
+	<?php
 	}
 }
