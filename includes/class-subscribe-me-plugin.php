@@ -185,10 +185,6 @@ class Subscribe_Me_Plugin {
 		//To display shortcode on frontpage in header section
 		$this->loader->add_action('wp_head', $plugin_public, 'add_shortcode_to_header');
 
-		//To save mail
-		$this->loader->add_action('init', $plugin_public,'save_subscriber_email');
-
-
 	}
 
 	/**
