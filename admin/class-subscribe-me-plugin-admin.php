@@ -100,4 +100,18 @@ class Subscribe_Me_Plugin_Admin {
 
 	}
 
+	//Callback for admin_menu
+	function my_add_menu_pages()
+	{
+		add_menu_page(
+			'Subscribe Me',
+			'Subscribe Me',
+			'manage_options',
+			'subscribe-me',
+			array($this, 'subscribe_me_callback'),
+			'dashicons-email',
+			10
+		);
+	}
+
 }
