@@ -117,7 +117,7 @@ class Subscribe_Me_Plugin_Public
                         <input type="hidden" name="action" value="subs_form">
                         <label for="email">Email:</label>
                         <input type="email" name="email" id="email" required/><br />
-                        <input type="submit" name="submit" value="Subscribe" onClick="return validateEmail()"/>
+                        <input type="submit" name="submit" value="Subscribe"/>
                     </form>
                 </div>';
 		return $output;
