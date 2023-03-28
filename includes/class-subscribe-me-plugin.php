@@ -159,6 +159,8 @@ class Subscribe_Me_Plugin {
 
 		$this->loader->add_action('admin_menu', $plugin_admin , 'my_add_menu_pages');
 		$this->loader->add_action('admin_init', $plugin_admin, 'reg_settings');
+		
+
 
 	}
 
@@ -175,6 +177,13 @@ class Subscribe_Me_Plugin {
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
+		
+
+		//To define shortcode
+		$this->loader->add_action( 'init', $plugin_public, 'email_subscriber_form_shortcode_fun' );
+
+		//To display shortcode on frontpage in header section
+		$this->loader->add_action('wp_head', $plugin_public, 'add_shortcode_to_header');
 
 	}
 
