@@ -138,10 +138,12 @@ class Subscribe_Me_Plugin_Public
 		//To check input pattern 
 		if (isset($_POST['email'])) {
 			$email = sanitize_email($_POST['email']);
-			$pattern = '/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/';
+			$pattern = '/^[a-zA-Z0-9._]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,}$/';
 
 			if (preg_match($pattern, $email)) {
-				if (isset($_POST['submit'])) {
+					if (!get_option('subscribed_mails')) {
+						add_option('subscribed_mails', array());
+					}
 
 					$subscribed_mails = get_option('subscribed_mails');
 
@@ -150,13 +152,13 @@ class Subscribe_Me_Plugin_Public
 					}
 
 					if (in_array($email, $subscribed_mails)) {
-						echo '<script>alert("You are already subscribed!");</script>';
+						echo '<p>"You are already subscribed!");</p>';
 					} else {
 						$subscribed_mails[] = $email;
 						update_option('subscribed_mails', $subscribed_mails);
 
 						// Display a success message
-						echo '<script>alert("You have been subscribed Successfully!");</script>';
+						echo '<p>You have been subscribed Successfully!</p>';
 						
 						//To send latest post details
 						$this->send_subscription_mail($email);
@@ -166,7 +168,7 @@ class Subscribe_Me_Plugin_Public
 				}
 			} else {
 				//For invalid email
-				echo '<script>alert("Please Enter a valid email!");</script>';
+				echo '<p>aPlease Enter a valid email!</p>';
 			}
 		}
 	}
