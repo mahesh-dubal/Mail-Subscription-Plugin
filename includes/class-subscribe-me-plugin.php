@@ -180,13 +180,14 @@ class Subscribe_Me_Plugin {
 		
 
 		//To define shortcode
-		$this->loader->add_action( 'init', $plugin_public, 'email_subscriber_form_shortcode_fun' );
+		add_shortcode('my-shortcode', array($plugin_public, 'email_subscriber_form_shortcode'));
+
 
 		//To display shortcode on frontpage in header section
 		$this->loader->add_action('wp_head', $plugin_public, 'add_shortcode_to_header');
 
-		//To save mail
-		$this->loader->add_action('init', $plugin_public,'save_subscriber_email');
+		//Ajax call
+		$this->loader->add_action('wp_ajax_send_mail_action', $plugin_public,'save_subscriber_email');
 
 
 	}
