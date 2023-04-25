@@ -179,6 +179,7 @@ class Subscribe_Me_Plugin_Public
 				echo '<p>aPlease Enter a valid email!</p>';
 			}
 		}
+		wp_die();
 	}
 
 	function send_subscription_mail($to)
