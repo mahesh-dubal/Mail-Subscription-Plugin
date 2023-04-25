@@ -112,14 +112,21 @@ class Subscribe_Me_Plugin_Public
 	//Callback for shortcode
 	function email_subscriber_form_shortcode()
 	{
-		$output = '<div class="wrap subs-wrap mail-form">
-                    <form class="subscribe-me-form" method="post">
-                        <input type="hidden" name="action" value="subs_form">
-                        <label for="email">Email:</label>
-                        <input type="email" name="email" id="email" required/><br />
-                        <input type="submit" name="submit" id="subscribe-button" value="Subscribe Me"/>
-                    </form>
-                </div>';
+		ob_start();
+?>
+		<div class="wrap subs-wrap mail-form">
+			<form id="myform" method="post">
+				<input type="hidden" name="action" value="subs_form">
+				<label for="email">Email:</label>
+				<input type="email" name="email" id="email" required />
+				<input type="submit" name="submit" id="subscribe-button" value="Subscribe Me" />
+				<div id="success-message"></div>
+			</form>
+		</div>
+
+<?php
+		$output = ob_get_contents();
+		ob_get_clean();
 		return $output;
 	}
 
