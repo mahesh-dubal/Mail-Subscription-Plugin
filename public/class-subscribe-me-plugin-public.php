@@ -108,11 +108,7 @@ class Subscribe_Me_Plugin_Public
 
 
 
-	//TO define shortcode
-	public function email_subscriber_form_shortcode_fun()
-	{
-		add_shortcode('my-shortcode', array($this, 'email_subscriber_form_shortcode'));
-	}
+	
 
 	//Callback for shortcode
 	function email_subscriber_form_shortcode()
