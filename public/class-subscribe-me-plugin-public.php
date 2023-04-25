@@ -76,6 +76,11 @@ class Subscribe_Me_Plugin_Public
 		 */
 
 		wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/subscribe-me-plugin-public.css', array(), $this->version, 'all');
+		
+		wp_enqueue_script('jquery');
+		wp_enqueue_script('my-script', plugin_dir_url(__FILE__) . 'js/myjquery.js', array('jquery'), '1.0', true);
+		wp_localize_script('my-script', 'ajax_object', array('ajax_url' => admin_url('admin-ajax.php')));
+	
 	}
 
 	/**
